@@ -1,0 +1,59 @@
+<%- include("./partials/head.ejs")%>
+
+<%- include("./partials/header.ejs")%>
+
+    <main>
+
+
+            <form action="/user/registro" method="POST" class="form-registro" enctype="multipart/form-data">
+
+                <div class="form-reg">
+                    <input type="text" name="nombre" id="nombreReg" placeholder="Nombre" >
+                </div>
+
+                <div class="form-reg">
+                    <input type="text" name="apellido" id="apellidoReg" placeholder="Apellido" >
+                </div>
+
+                <div class="form-reg">
+                    <input type="email" name="email" id="emailReg" placeholder="Email" >
+                </div>
+                
+                <div class="form-reg">
+                    <input type="password" name="password" id="passwordReg" placeholder="Ingrese su contraseña" >
+                    <input type="password" name="passwordValid" id="passwordValidReg" placeholder="Repita su contraseña" >
+                </div>
+                
+                <div>
+                    <input type="file" name="fotoPerfil"  id="foto-perfil" accept="image/jpeg,image/jpg,image/png ">
+                    <div onclick="document.getElementById('foto-perfil').click()" id="boton-file-input">
+                        Elegir foto de perfil
+                        <i class="fa-solid fa-camera-retro"></i>
+                    </div>
+                </div>
+                 
+                <div class="form-reg"></div>
+                
+                <div class="errores">
+                    <% if (typeof errors != "undefined"){ %>
+                        <div class="alert-warning">
+                                <% errors.forEach(error => { %>
+                                    <li><%= error.msg%></li>
+                                <%});%>
+                        </div>
+                    <% } %>
+                </div>
+                <div class="form-button">
+                    <button type="submit"><p> Registrese </p></button>
+                    
+                </div>
+                <hr class="linea">
+                <div  class="form-button">
+                    <p>Ya tienes una cuenta? <a href="/user/login">Ingresa Aqui!</a></p>
+                </div>
+            </form>
+
+
+    </main>
+    
+<%- include ("./partials/footer.ejs")%> 

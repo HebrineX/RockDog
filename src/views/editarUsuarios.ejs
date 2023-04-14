@@ -1,0 +1,63 @@
+<%- include("./partials/head.ejs")%>
+
+<%- include("./partials/header.ejs")%>
+<main>
+
+    <form action="/user/editarUsuarios/<%= user.id %>?_method=PATCH" method="POST" class="form-edit-user" enctype="multipart/form-data">
+        <div class="errores">
+            <% if (typeof errors != "undefined"){ %>
+                <div class="alert-warning">
+                        <% errors.forEach(error => { %>
+                            <li><%= error.msg%></li>
+                        <%});%>
+                </div>
+            <% } %>
+        </div>
+        <div class="form-reg">
+            <input type="text" name="nombre" placeholder="Nombre" id="nombreReg"  required value="<%= user.nombre%>">
+        </div>
+
+        <div class="form-reg">
+            <input type="text" name="apellido" placeholder="Apellido" id="apellidoReg"  required value="<%= user.apellido%>">
+        </div>
+
+        <div class="form-reg">
+            <input type="email" name="email" placeholder="Email" id="emailReg"  required value="<%= user.email%>">
+        </div>
+        
+        <div class="form-reg">
+            <input type="password" name="passwordOld" id="oldPass" placeholder="Ingrese su contraseña actual" >
+            <input type="password" name="password" id="passwordReg"  placeholder="Ingrese su nueva contraseña" >
+            <input type="password" name="passwordValid" id="passwordValidReg" placeholder="Repita su nueva contraseña" >
+        </div>
+        
+
+        <div class="file-input-img">
+            <img src="/images/avatars/<%= user.imagen%>" >
+            
+            <input type="hidden"  name="oldImagen" id="oldImagen"  value="<%= user.imagen%>">
+            <input type="file" name="imagen"  id="file-input" >
+
+            <input type="file" name="fotoPerfil"  id="foto-perfil">
+            <div onclick="document.getElementById('foto-perfil').click()" id="boton-file-input">
+                Elegir foto de perfil
+                <i class="fa-solid fa-camera-retro"></i>
+            </div>
+        </div>
+        
+        <div class="form-reg"></div>
+
+        
+        <div class="form-button">
+            <button type="submit"><p> Guardar cambios </p></button>
+        </div>
+        <br>
+        <div class="botonCrear">
+            <button><a href="/user/perfil/<%= user.id %>">Volver atras</a></button>
+        </div>
+    </form>
+
+
+</main>
+
+<%- include ("./partials/footer.ejs")%>

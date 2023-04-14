@@ -1,0 +1,6 @@
+
+
+fuente: Pink Rocket Regular
+
+gris ese: #f3f2f2
+rojo: #ea1d25

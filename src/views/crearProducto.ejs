@@ -1,0 +1,66 @@
+<%- include("./partials/head.ejs")%>
+
+<%- include("./partials/header.ejs")%>
+
+<main>
+    <form action="/productos/crear-producto" method="POST" class="form-crear" id="formularioProductos" enctype="multipart/form-data">
+        <div class="errores">
+            <% if (typeof errors != "undefined"){ %>
+                <div class="alert-warning">
+                        <% errors.forEach(error => { %>
+                            <li><%= error.msg%></li>
+                        <%});%>
+                </div>
+            <% } %>
+        </div>
+        <div class="post-crear">
+            <input type="text" placeholder="Nombre del producto" id="nombre-producto" name="nombreProducto"  >
+        </div>
+        <div class="post-crear">
+            <textarea name="descripcion" id="descripcion" cols="30" rows="4" placeholder="Descripción"></textarea>
+        </div>
+
+        <div class="post-crear">
+            <input type="text" name="detalle" id="detalle" placeholder="Detalles del producto">
+            <label for=""></label>
+        </div>
+        <div class="post-crear">
+            <input type="number" placeholder="Precio" id="precio" name="precioProducto" min="0" >
+        </div>
+        <div class="post-crear">
+            <input type="number" placeholder="Stock" id="stock" name="stock" >
+        </div>
+        <div>
+            <select name="categorias" class="select-radio" id="categorias" >
+                <option selected disabled value="#"> Seleccione una categoria </option>
+                <%for (let i=0; i < categoria.length;i++){%>
+                    <option value="<%=categoria[i].id%>"><%=categoria[i].categoria%></option>
+                <%}%>
+            </select>
+            
+        </div>
+        <div class="post-crear">
+            <select name="marca" class="select-radio" id="marca">
+                <option selected disabled value="#"> Seleccione una marca </option>
+                <%for (let i=0; i < marca.length;i++){%>
+                    <option value="<%=marca[i].id%>"><%=marca[i].marca%></option>
+                <%}%>
+            </select>
+        </div>
+        <br>
+        
+        <div class="file-input-img">
+            <input type="file" name="imagenProducto"  id="file-input" accept="image/png, image/jpg, image/gif, image/jpeg">
+            <div onclick="document.getElementById('file-input').click()" id="boton-file-input"> Subir archivo <i class="fa-solid fa-camera-retro"></i></div>
+            
+        </div>                
+
+        </div>
+        <br>
+        <div class="botonCrear">
+            <button type="submit"><p> Crear producto </p></button>
+        </div>
+    </form>
+</main>
+
+<%- include ("./partials/footer.ejs")%> 

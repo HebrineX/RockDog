@@ -1,0 +1,13 @@
+Rangos de usuarios =
+
+0 = no conectado
+1 = comprador
+2 = vendedor
+3 = administrador
+
+Nosotros somos dios :D+
+
+
+estado usuarios/productos
+0 = true
+1 = false

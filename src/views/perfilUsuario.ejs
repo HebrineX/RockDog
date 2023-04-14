@@ -1,0 +1,42 @@
+<%- include("./partials/head.ejs")%>
+
+<%- include("./partials/header.ejs")%>
+<main>
+    <article class="perfil-id">
+        <section class="datos-perfil">
+        <div class="avatar">
+            <img src="/images/avatars/<%= usuarios.imagen %>" alt="...">
+                
+            <!-- <% if(/(.jpg|.jpeg|.png|.gif)$/.exec(usuarios.imagen) ) { %>
+                <img src="https://github.com/HebrineX/Grupo_12_RockDog/blob/master/ProyeBase/public/images/avatars/<%= usuarios.imagen %>?raw=true" alt="..."></div>
+                <%}else{%>
+                <%}%>-->
+        </div>
+        <div>
+            <h2> <%- usuarios.nombre %> <%- usuarios.apellido %></h2>
+            <p> <%- usuarios.email%> </p>
+        </div>
+        </section>
+        <section class="botones-perfil">
+            <% if(locals.usuario.email == usuarios.email||locals.usuario.rango == 3) { %>
+                <a href="/user/editarUsuarios/<%= usuarios.id %>" ><button ><p>Editar</p></button></a>
+            <%}%>
+            
+            <% if(locals.usuario.rango == 3) { %>
+                <% if(usuarios.estado == 0){%>
+                    <form action="/user/delete/<%= usuarios.id %>?_method=DELETE" method="POST" class="botones-perfil">
+                        <button type="submit" ><p> Eliminar </p></button>
+                    </form>
+                <%}else{%>
+                    <form action="/user/activar/<%= usuarios.id %>?_method=PATCH" method="POST" class="botones-perfil">
+                        <button type="submit" ><p> Activar </p></button>
+                    </form>
+                <%}%>
+            <%}%>
+        </section>
+    </article>
+
+        
+</main>
+
+<%- include ("./partials/footer.ejs")%>

@@ -1,0 +1,83 @@
+<%- include("./partials/head.ejs")%>
+
+<%- include("./partials/header.ejs")%>
+
+<main>
+    <form action="/productos/editar-producto/<%= product.id %>?_method=PATCH" method="POST" class="form-crear" id="formularioProductos" enctype="multipart/form-data">
+        <div class="errores">
+            <% if (typeof errors != "undefined"){ %>
+                <div class="alert-warning">
+                        <% errors.forEach(error => { %>
+                            <li><%= error.msg%></li>
+                        <%});%>
+                </div>
+            <% } %>
+        </div>
+        <h2 class="products-title">Estás editando: <%= product.nombre_producto%></h2>
+
+        <div class="post-crear">
+            <input type="text" placeholder="Nombre del producto" name="nombreProducto" id="nombre-producto" value="<%= product.nombre_producto%>" >
+        </div>
+        <div class="post-crear">
+            <textarea name="descripcion" selectionDirection= "none" id="descripcion"  placeholder="Descripción" rows="6"><%= product.descripcion%></textarea>
+        </div>
+
+        <div class="post-crear">
+            <input type="text" name="detalle" id="detalle" placeholder="Detalles del producto" value="<%= product.detalle%>">
+            <label for=""></label>
+        </div>
+        <div class="post-crear">
+            <input type="number" placeholder="Precio" name="precioProducto" min="0"  id="precio"  value="<%= product.precio%>">
+        </div>
+        <div class="post-crear">
+            <input type="number" placeholder="Stock" name="stock" min="0"  id="stock" value="<%= product.stock%>">
+        </div>
+        <div>
+            <select name="categorias" class="select-radio" id="categorias" >
+                <% product.categorias.forEach(element => {%>
+                    <option selected disabled value="element.id"> <%= element.categoria%> </option>
+                    <%for (let i=0; i < categoria.length;i++){%>
+                        <% if(element.categoria != categoria[i].categoria){%>
+                            <option value="<%=categoria[i].id%>"><%=categoria[i].categoria%></option>
+                        <%}%>
+                    <%}%>
+                <%})%>
+            </select>
+            
+        </div>
+        <div class="post-crear">
+            <select name="marca" class="select-radio" id="marca">
+                <option selected disabled value="<%=marca[product.FK_marca-1].id%>"><%=marca[product.FK_marca-1].marca%></option>
+                <%for (let i=0; i < marca.length;i++){%>
+                    <% if(marca[product.FK_marca-1].marca !=marca[i].marca){%>
+                    <option value="<%=marca[i].id%>"><%=marca[i].marca%></option>
+                    <%}%>
+                <%}%>
+            </select>
+        </div>
+
+        <div class="file-input-img">
+
+            <img src="/images/productos/<%= product.imagen%>" >
+            <input type="hidden"  name="oldImagen" id="oldImagen" value="<%= product.imagen%>">
+            <input type="file" name="imagenProducto"  id="file-input" >
+            <div onclick="document.getElementById('file-input').click()" id="boton-file-input">
+                Subir archivo 
+                <i class="fa-solid fa-camera-retro"></i>
+            </div>
+            
+        </div>
+        <br>
+
+        <br>
+        <div class="botonCrear">
+            <button type="submit"><p> Editar </p></button>
+        </div>
+        <br>
+        <div class="botonCrear">
+        <button><a href="/productos/details/<%= product.id %>">Volver atras</a></button>
+        </div>
+    </form>
+</main>
+
+<%- include ("./partials/footer.ejs")%> 

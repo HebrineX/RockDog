@@ -1,0 +1,35 @@
+<%- include("./partials/head.ejs")%>
+
+<%- include("./partials/header.ejs")%>
+
+<main>        
+        <div class="linea-divobj"></div>
+
+
+            <h2 class="titulos-categorias">Productos Dados De Baja</h2>
+            <div class="articulos">
+                <seccion class="secciones">
+                    <% categorias.forEach(categoria=>{%>
+                        
+                                
+                                    <% categoria.productos.forEach(function(product){ %>
+                                            <% if(product.estado == 1){%>
+                                                <article class="items-venta">
+                                                   <div class="item-img"><img src="/images/productos/<%= product.imagen %>" alt="..."></div>
+                                                   <div class="precio"><p>$<%= divisorNumerico(product.precio) %></p></div>
+                                                   <div class="descripciones"><p><%= product.nombre_producto %></p></div>
+                                                   <a href="/productos/details/<%= product.id %>"><button>Detalles</button></a>
+                                               </article>
+                                            <% } %>
+                                    <% }) %>
+                                
+                    <%})%>
+                </seccion>
+            </div>
+                <div class="linea-divobj"></div>
+            </div>
+
+</main>
+    
+<%- include ("./partials/footer.ejs")%> 
+    

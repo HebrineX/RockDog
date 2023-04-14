@@ -1,0 +1,41 @@
+<%- include("./partials/head.ejs")%>
+
+<%- include("./partials/header.ejs")%>
+
+    <main>
+
+        <div class="titulo-carro">
+            <i class="fa-solid fa-cart-shopping"></i><h2>Mi carrito</h2>
+        </div>
+        <article class="form-producto" >
+            <section class="items" id="containerCart"></section>
+                
+                <div class="linea-horizontal"></div>
+                <div class="linea-vertical"></div>
+
+                <section class="finalizar">
+                    <div class="resumen-orden">
+                        <h2>Resumen de compra</h2>
+                    </div>
+                    <section class="suma-items">
+                        <h2 id="cantTotal"></h2>
+                            <div>
+                                <h2 id="precioTotal"></h2>
+                            </div>
+                    </section>
+                    
+                        
+                        <div class="fin-compra">
+                            <button id="vaciar"><p>Vaciar carrito</p></button>
+                        </div> 
+                        <br>
+                        <div class="fin-compra">
+                            <button id="comprarYa"><p>Finalizar compra</p></button> 
+                        </div>
+                    
+                </section>
+        </article>
+
+    </main>
+    
+<%- include ("./partials/footer.ejs")%> 

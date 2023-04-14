@@ -1,0 +1,55 @@
+<%- include("./partials/head.ejs")%>
+
+<%- include("./partials/header.ejs")%>
+
+<main>
+    <section class="usuario">
+        <h2> Lista De Usuarios!</h2>
+        <% users.forEach(function(user){ %>
+
+            <article >
+                <div class="usuario-imagen"><img src="/images/avatars/<%= user.imagen %>" alt="..."></div>
+               <!-- <% if(/(.jpg|.jpeg|.png|.gif)$/.exec(user.imagen) ) { %>
+                <div class="usuario-imagen"><img src="https://github.com/HebrineX/Grupo_12_RockDog/blob/master/ProyeBase/public/images/avatars/<%= user.imagen %>?raw=true" alt="..."></div>
+                <%}else{%>
+                    <div class="usuario-imagen"><img src="/images/avatars/<%= user.imagen %>" alt="..."></div>
+                <%}%>-->
+                <div class="datos-user" >
+                    <div class="usuario-nombre"><p><%=user.nombre +" "+user.apellido %></p></div>
+                    <div class="usuario-categoria"><p> Categoría de interés: <%= user.categoria %></p></div>
+                    <div><p>Estado de la cuenta : <% if(user.estado == 0){%>De 10 perri
+                        <%}else{%>
+                            Desactivada
+                        <%}%>
+                        </p> 
+                        </div>
+                </div>
+                
+                    <seccion class="botones-perfiles">
+                    <% if(locals.usuario.email == user.email||locals.usuario.rango == 3) { %>
+                    <a href="/user/editarUsuarios/<%= user.id %>"><button><p> Editar </p></button></a>
+                    <%}%>
+                    <% if(locals.usuario.rango == 3) { %>
+                        <% if(user.estado == 0){%>
+                            <form action="/user/delete/<%= user.id %>?_method=DELETE" method="POST" >
+                                <button type="submit" ><p> Eliminar </p></button>
+                            </form>
+                        <%}else{%>
+                            <form action="/user/activar/<%= user.id %>?_method=PATCH" method="POST" >
+                                <button type="submit" ><p> Activar </p></button>
+                            </form>
+                        <%}%>
+                    <%}%> 
+                        <a href="/user/perfil/<%= user.id %>"><button><p> Ver Perfil </p></button></a>
+                    
+                    </seccion>
+
+            </article>
+            
+        <% }) %>
+       
+    </section>
+<br>
+</main>
+
+<%- include ("./partials/footer.ejs")%>

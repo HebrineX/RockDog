@@ -1,0 +1,21 @@
+<%- include("./partials/head.ejs")%>
+
+    <div class="acceso-denegado">
+        <img src="/images/logo-dog.png" alt="">
+        <h3>Acceso denegado</h3>
+        <% if (locals.usuario) { %>
+            <% if(locals.usuario.rango == 2){%>
+                <p>Vos no sos administrador acá, pete. <a href="/" style="font-weight: 600;color : blue">Volver a la pagina principal</a></p></p>
+            
+            <% }else if (locals.usuario.rango == 1){ %>
+                <p>No tenes acceso a esta pagina! <a href="/" style="font-weight: 600;color : blue">Volver a la pagina principal</a></p>
+            <% } %>
+        <% }else{ %>
+            <p>No estas logeado... </p>
+            <p><a href="/user/login" style="font-weight: 600;color : red">Veni, dale logeate</a></p>
+            <p>O </p>
+            <p><a href="/" style="font-weight: 600;color : blue">Volver a la pagina principal</a></p>
+            <% } %>   
+    </div>
+
+</body>

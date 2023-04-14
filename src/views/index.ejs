@@ -1,0 +1,46 @@
+<%- include("./partials/head.ejs")%>
+
+<%- include("./partials/header.ejs")%>
+
+<main>
+    
+    <a href="/pagina-en-construccion"><div class="banner-prov"><img src="./images/es_main_salud.jpg" alt=""></div></a>
+
+    <div class="articulos"> 
+
+        <h2 class="titulos-categorias">Marcas con las que trabajamos</h2>
+
+        <%- include("./partials/marcas.ejs")%>
+
+        <div class="linea-divobj"></div>
+
+        <% categorias.forEach(categoria=>{%>
+            <div>
+                <h2 class="titulos-categorias">Productos para <%=categoria.categoria%></h2>
+                    <seccion class="secciones">
+                        <% categoria.productos.forEach(function(product){ %>
+                            <% if(product.estado == 0){%>
+                            <a href="/productos/details/<%= product.id %>">
+                                <article class="items-venta">
+                                    <div class="item-img"><img id="imgProd" src="/images/productos/<%= product.imagen %>" alt="<%= product.imagen %>"></div>
+                                    <div class="precio" id="priceProd"><p>$<%= divisorNumerico(product.precio) %></p></div>
+                                    <div class="descripciones" id="nameProd"><p><%= product.nombre_producto %></p></div>
+                                    
+                                        <form action="/productos/details/<%= product.id %>" class="form-button">
+                                            <button href="/productos/details/<%= product.id %>"><a href="/productos/details/<%= product.id %>">Detalles</a></button>
+                                        </form>
+                               
+                                </article>
+                            </a>
+                            <% } %>
+                    <% }) %>
+            
+                </seccion>
+                <%})%>
+            <div class="linea-divobj"></div>
+        </div>
+    </div>
+</main>
+    
+<%- include ("./partials/footer.ejs")%> 
+    

@@ -1,0 +1,55 @@
+<%- include("./partials/head.ejs")%>
+
+<%- include("./partials/header.ejs")%>
+
+    <main>
+
+        <form action="/user/login" method="POST" class="login" id="">
+            
+            <div class="form-login">
+                <input type="text" name="email" id="emailLog" placeholder="Email">
+                <input type="password" name="password" id="passwordLog" placeholder="Contraseña">
+            </div>
+           
+            <div class="registrate-ahora">
+                <p>No tienes una cuenta? <a href="/user/registro">Registrate!</a></p>
+            </div>
+            <div class="login-recordame">
+                <label>
+                        <input type="checkbox" name="recuerdame">
+                        <p>Recuerdame</p>
+                </label>
+            </div>     
+            <div class="form-login">
+                <div class="errores">
+                <% if (typeof errors != "undefined"){ %>
+                    <div class="alert-warning">
+                            <% errors.forEach(error => { %>
+                                <li><%= error.msg%></li>
+                            <%});%>
+                    </div>
+                <% } %>
+                </div>
+            </div>       
+            
+
+            <div class="boton-ingresar" >
+                <button type="submit"> Ingresar </button>
+            </div>
+
+            <div class="olvidaste-contraseña">
+                <a href=""><p>¿Olvidaste tu contraseña?</p></a>
+            </div>
+            <div class="separador-o">
+                <hr><p> O </p><hr>
+            </div>
+            <div class="boton-ingresar" >
+                <button type="reset"><p>Iniciar con Gmail <i class="fa-brands fa-google"></i></p></button>
+            </div>
+
+                <br>
+        </form>
+
+    </main>
+ 
+<%- include ("./partials/footer.ejs")%> 

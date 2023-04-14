@@ -1,0 +1,77 @@
+
+<header>
+    
+    <nav class="cabecera">
+
+        <div class="logo-mobil"><a href="/" ><img src="/images/logo-rock-dog-mobile.png" alt="logo"></a></div>
+        <div class="logo"><a href="/" ><img src="/images/logo-rock-dog.png" alt="logo"></a></div>
+        
+
+        <article class="barra-busqueda">
+                <input type="search" id="site-search" name="buscar" placeholder="Buscar por Producto, Marca, Etc..">
+                <button type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+
+        </article>
+        
+        <ul class="desplegables">
+            <li><a href="/productos/carrito"><i class="fa-solid fa-cart-shopping"></i><span class="cartNmb">
+					
+            </span></a></li>
+
+             
+            <li id="buttonBars">
+                <% if (locals.usuario) { %>
+                    <div class="avatar-header">
+                        
+                                <img src="/images/avatars/<%= locals.usuario.imagen %>" alt="...">
+                            
+                    </div>
+                    <%} else { %>
+                    <i class="fa-solid fa-bars"></i>
+                    <% } %>
+                
+                <ul class="menu-despl" style="z-index: static;" >
+                    <% if(locals.usuario) { %>
+                        <a href="/user/perfil/<%-locals.usuario.id%>"><li>Mi cuenta</li></a>
+                    <% } else { %> 
+                        <a href="/user/login"><li>Ingresa a tu cuenta</li></a>
+                        <a href="/user/registro"><li>Registrate</li></a>
+                    <%}%> 
+                    <a href="/productos/"><li>Todos los productos</li></a>
+                    <% if(locals.usuario) { %>
+                        <% if(locals.usuario.rango >= 2){%>
+                            <a href="/productos/crear-producto"><li>Vender</li></a>
+                        <%}%> 
+                    <%}%>  
+                    <% if(locals.usuario) { %>
+                        <% if(locals.usuario.rango == 3){%>
+                            <a href="/user/perfiles"><li>Perfiles</li></a>
+                            <a href="/productos/descontinuados"><li>Descontinuados</li></a>
+                        <%}%> 
+                    <%}%>
+                    <% if(locals.usuario) { %>
+                        <a href="/user/cerrarSesion"><li>Cerrar Sesión</li></a>
+                    <%}%>    
+                </ul>
+            </li> 
+        
+<!--
+        <ul class="menu">
+            <li><a class="menuItem" href="#">Home</a></li>
+            <li><a class="menuItem" href="#">Profile</a></li>
+            <li><a class="menuItem" href="#">About</a></li>
+            <li><a class="menuItem" href="#">Contacts</a></li>
+          </ul>
+          <button class="hamburger">
+            <i class="menuIcon material-icons">menu</i>
+            <i class="closeIcon material-icons">close</i>
+          </button>
+
+        </ul>
+        -->
+
+    </nav>
+
+
+    
+</header>

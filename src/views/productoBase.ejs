@@ -1,0 +1,101 @@
+<%- include("./partials/head.ejs")%>
+
+<%- include("./partials/header.ejs")%>
+
+    <main>
+        <div class="pb">
+                <div class="pb-sup-izq">
+                    <div><img id="imgProd" src="/images/productos/<%= product.imagen %>" alt="<%= product.imagen %>" ></div>
+                    <!--Carrusel con otras imagenes-->
+                </div>
+                <input type="hidden" id="idProd" value="<%= product.id %>">
+                <div class="enc-mob">
+                    <p class="marca"><%= product.FK_marca %></p>
+                    <p class="nombre"><%= product.nombre_producto %></p>
+                    <p class="descripcion">Proximamente</p>
+                </div>
+                <div class="pb-der-desk">
+                    <div class="enc-desk">
+                        <p class="marca"><%= product.marcas.marca %></p>
+                        <p class="nombre" id="nameProd"><%= product.nombre_producto %></p>
+                        <p class="descripcion"><% product.categorias.forEach(cat=>{%> <%= cat.categoria%> <%})%>  </p>
+                    <hr>
+                        <p class="descripcion" id="descProd"><%= product.descripcion %></p>
+                        
+                    </div>
+                    <br>
+                    <br>
+
+                    <div class="peso">
+                        <br>
+                        <br>
+                        <p > </p>
+                    </div>
+                    <div class="total-y-cant">
+                        <div class="div-total">
+                            <div class="precioDisplay">
+                                <p id="pb-total">Total</p>
+                                <input type="hidden" id="priceProd" value="<%= product.precio %>">
+                                <p class="total" >$<%= divisorNumerico(product.precio) %></p>
+                            </div>
+                        </div>
+                        <div class="cantidad">
+                            <p class="descripcion" id="descProd"><%= product.detalle %></p>
+                            <!-- cantidad (- 1 +) -->
+                        </div>
+                    </div>
+                    <section class="añadir-carrito">
+                        <div class="form-button">
+                            <button class="buy-now-button"> Añadir al carrito</button>
+                        </div>
+                    </section>
+                    
+                    <% if(locals.usuario) { %>
+                        <% if(usuario.rango >= 2){%>
+                    <section class="añadir-carrito">
+                        <form action="/productos/editar-producto/<%= product.id %>">
+                        <div class="form-button">
+                            <button>Editar</button>
+                            </div>
+                        </form>
+                        
+                        <% if(product.estado == 0){%>
+                            <form action="/productos/delete/<%=product.id%>?_method=DELETE" method="POST" >
+                                <div class="form-button">
+                                <button type="submit" ><p> Eliminar </p></button>
+                            </div>
+                            </form>
+                        <%}else{%>
+                            <form action="/productos/activar/<%=product.id%>?_method=PATCH" method="POST">
+                                <div class="form-button">
+                                    <button type="submit" ><p> Activar </p></button>
+                                </div>
+                            </form>
+                        <%}%>
+                        <%}%>
+                    <%}%>
+                    </section>
+                    
+                    <div class="pb-detalles">
+                        <div><p>Detalles</p></div>
+                        <i class="fa-solid fa-angle-down"></i>
+                        <span><p>Bla, bla, bla</p></span>
+                    </div>
+
+
+                </div>
+
+                
+                
+                
+
+                <!--
+                <p class="color">Seleccionar color</p>
+                <select>
+                    <option value="Color 1">
+                </select>
+                -->
+        </div>
+    </main>
+
+<%- include ("./partials/footer.ejs")%> 
