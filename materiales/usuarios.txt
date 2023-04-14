@@ -5,7 +5,6 @@ Rangos de usuarios =
 2 = vendedor
 3 = administrador
 
-Nosotros somos dios :D+
 
 
 estado usuarios/productos
